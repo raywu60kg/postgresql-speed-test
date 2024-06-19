@@ -7,7 +7,7 @@ app = FastAPI()
 
 
 # Database configuration
-DATABASE_URI = "postgresql://username:password@localhost/dbname"
+DATABASE_URI = "postgresql://pst:pst@localhost/pst"
 
 @app.delete("/table")
 async def drop_table():
@@ -19,8 +19,8 @@ async def create_table(create_table_input: CreateTableInput):
 
 @app.get("/slow-query")
 async def slow_query_users(limit: int = Query(default=10)):
-    return await slow_query(limit=limit)
+    return await slow_query(database_uri=DATABASE_URI,limit=limit)
 
 @app.get("/fast-query")
-async def slow_query_users(limit: int = Query(default=10)):
-    return await fast_query(limit=limit)
+async def fast_query_users(limit: int = Query(default=10)):
+    return await fast_query(database_uri=DATABASE_URI,limit=limit)

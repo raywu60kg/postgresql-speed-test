@@ -17,10 +17,10 @@ async def create_table_and_batch_insert_data(database_uri,record_number, usernam
     conn = await asyncpg.connect(database_uri)
     
     # Create a table if not exists
-    await conn.execute(f'''
+    await conn.execute('''
         CREATE TABLE IF NOT EXISTS users (
             id SERIAL PRIMARY KEY,
-            username VARCHAR({username_len})
+            username TEXT 
         )
     ''')
 

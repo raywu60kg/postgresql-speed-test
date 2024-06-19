@@ -1,3 +1,11 @@
+help:  
+	@sed -ne '/@sed/!s/## //p' $(MAKEFILE_LIST)
+
+
+server-dev: ## run dev server
+	fastapi dev src/main.py
+
+
 postgres-up: ## run test postgres
 	docker run \
 	--name pst \
@@ -8,4 +16,4 @@ postgres-up: ## run test postgres
 	-d postgres:12.5-alpine
 
 postgres-cli:
-	docker exec -it pst psql -U pca -d pca
+	docker exec -it pst psql -U pst -d pst
